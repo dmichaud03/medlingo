@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
-import { db, courses } from '@/db/schema';
+import  db  from '@/db/drizzle'
+import { lessons } from '@/db/schema';
 import { params } from 'next/navigation';
 
 export const GET = async () => {
     try {
-        // Extract courseId from params
+        // Extract lessonId from params
         const { lessonId } = params();
 
-        // Fetch the course from the database
-        const course = await db.query.courses.findFirst({
+        // Fetch the lesson from the database
+        const lesson = await db.query.lessons.findFirst({
             where: eq(lessons.id, lessonId),
         });
 

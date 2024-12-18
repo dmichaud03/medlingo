@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
-import  db  from '@/db/drizzle'
+import  db  from '@/db/drizzle';
 import { lessons } from '@/db/schema';
 import { params } from 'next/navigation';
 

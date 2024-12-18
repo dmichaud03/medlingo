@@ -1,39 +1,33 @@
-import db from "@/db/drizzle"
-import { courses } from "@/db/schema"
-import { eq } from "drizzle-orm"
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import { eq } from 'drizzle-orm';
+import { db, courses } from '@/db/schema';
+import { params } from 'next/navigation';
 
-export const GET = async (
-    req: Request,
-    { params }: { params: { courseId } },
-) => {
-    const data = await db.query.courses.findFirst({
-        where: eq(courses.id, params.courseId)
-    });
+export const GET = async () => {
+    try {
+        // Extract courseId from params
+        const { courseId } = params();
 
-    return NextResponse.json(data);
-};
+        // Fetch the course from the database
+        const course = await db.query.courses.findFirst({
+            where: eq(courses.id, courseId),
+        });
 
-export const PUT = async (
-    req: Request,
-    { params }: { params: { courseId: number } },
-) => {
+        // If no course is found, return a 404 response
+        if (!course) {
+            return NextResponse.json(
+                { data: null, error: 'Course not found' },
+                { status: 404 }
+            );
+        }
 
-    const body = await req.json();
-    const data = await db.update(courses).set({
-        ...body,
-    }).where(eq(courses.id, params.courseId)).returning();
-    
-
-    return NextResponse.json(data[0]);
-};
-
-export const DELETE = async (
-    req: Request,
-    { params }: { params: { courseId: number } },
-) => {
-    const data = await db.delete(courses)
-    .where(eq(courses.id, params.courseId)).returning();
-
-    return NextResponse.json(data[0]);
+        // Return the course data
+        return NextResponse.json({ data: course, error: null });
+    } catch (error) {
+        // Handle any unexpected errors
+        return NextResponse.json(
+            { data: null, error: 'Internal Server Error' },
+            { status: 500 }
+        );
+    }
 };

@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (
     req: Request,
-    { params }: { params: { courseId: number } },
+    { params }: { params: { courseId } },
 ) => {
     const data = await db.query.courses.findFirst({
         where: eq(courses.id, params.courseId)

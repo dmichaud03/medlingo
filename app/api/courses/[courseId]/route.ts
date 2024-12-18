@@ -33,17 +33,7 @@ export default async function LessonIdPage(props: { params: Params }) {
             lesson.challenges.length) *
         100;
 
-    // Render the Quiz component
     
-        // Render the Quiz component
-    return (
-        <Quiz
-            initialLessonId={lesson.id} // Pass the actual value, not a string
-            initialLessonChallenges={lesson.challenges} // Pass the actual value, not a string
-            initialHearts={userProgress.hearts} // Pass the actual value, not a string
-            initialPercentage={initialPercentage} // Pass the actual value, not a string
-            userSubscription={userSubscription} // Pass the actual value, not a string
-        />
-    );
-}
+    
+};
     

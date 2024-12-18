@@ -34,7 +34,7 @@ export default async function LessonIdPage(props: { params: Params }) {
         100;
 
     // Render the Quiz component
-    return (
+    
         // Render the Quiz component
     return (
         <Quiz

@@ -6,36 +6,38 @@ import { Quiz } from "../quiz";
 
 type Props = {
     params: {
-        lessonId: number;
+        lessonId: string; // Next.js treats dynamic route params as strings
     };
 };
 
-const LessonIdPage = async ({
-    params,
-}: Props) => {
-    const lessonData = getLesson(params.lessonId);
-    const userProgressData = getUserProgress();
-    const userSubscriptionData = getUserSubscription();
+const LessonIdPage = async ({ params }: Props) => {
+    const lessonId = parseInt(params.lessonId, 10); // Convert lessonId to a number
 
-    const [
-        lesson,
-        userProgress,
-        userSubscription,
-    ] = await Promise.all([
-        lessonData,
-        userProgressData,
-        userSubscriptionData,
-    ]);
-
-    if (!lesson || !userProgress) {
-        redirect("/learn");
+    if (isNaN(lessonId)) {
+        redirect("/learn"); // Redirect if lessonId is invalid
+        return null;
     }
 
-    const initialPercentage = lesson.challenges.filter((challenge) => challenge.completed)
-    .length / lesson.challenges.length * 100;
+    // Fetch data concurrently
+    const [lesson, userProgress, userSubscription] = await Promise.all([
+        getLesson(lessonId),
+        getUserProgress(),
+        getUserSubscription(),
+    ]);
+
+    // Handle missing data
+    if (!lesson || !userProgress) {
+        redirect("/learn");
+        return null;
+    }
+
+    const initialPercentage =
+        (lesson.challenges.filter((challenge) => challenge.completed).length /
+            lesson.challenges.length) *
+        100;
 
     return (
-        <Quiz 
+        <Quiz
             initialLessonId={lesson.id}
             initialLessonChallenges={lesson.challenges}
             initialHearts={userProgress.hearts}

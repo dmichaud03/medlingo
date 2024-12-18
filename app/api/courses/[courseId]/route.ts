@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+9import { redirect } from "next/navigation";
 import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
 import { Quiz } from "../quiz";
 
@@ -35,15 +35,15 @@ export default async function LessonIdPage(props: { params: Params }) {
 
     // Render the Quiz component
     return (
+        // Render the Quiz component
+    return (
         <Quiz
-            initialLessonId = {"lesson.id"}
-initialLessonChallenges = {"lesson.challenges"}
-          
-initialHearts = {"userProgress.hearts"}
-        
-initialPercentage = {"initialPercentage"}
-          
-userSubscription = {"userSubscription"}
+            initialLessonId={lesson.id} // Pass the actual value, not a string
+            initialLessonChallenges={lesson.challenges} // Pass the actual value, not a string
+            initialHearts={userProgress.hearts} // Pass the actual value, not a string
+            initialPercentage={initialPercentage} // Pass the actual value, not a string
+            userSubscription={userSubscription} // Pass the actual value, not a string
         />
     );
-};
+}
+    

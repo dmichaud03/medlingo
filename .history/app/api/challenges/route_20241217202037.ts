@@ -4,7 +4,7 @@ import db from "@/db/drizzle";
 import { challenges } from "@/db/schema";
 
 export const GET = async () => {
-    const data = await db.query.challenges.findMany();
+    const data = await db.query.lessons.findMany();
 
     return NextResponse.json(data);
 };

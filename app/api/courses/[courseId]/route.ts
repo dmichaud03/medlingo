@@ -46,4 +46,4 @@ initialPercentage = {"initialPercentage"}
 userSubscription = {"userSubscription"}
         />
     );
-}
+};

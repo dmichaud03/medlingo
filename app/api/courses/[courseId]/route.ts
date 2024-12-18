@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
 import db from '@/db/drizzle';
 import { courses } from '@/db/schema';
-import { params } from 'next/navigation';
 
 export const GET = async () => {
     try {

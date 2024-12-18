@@ -32,8 +32,14 @@ export default async function LessonIdPage(props: { params: Params }) {
         (lesson.challenges.filter((challenge) => challenge.completed).length /
             lesson.challenges.length) *
         100;
-
+return(
+    <Quiz
+    initialLessonId={lesson.id} 
+    initialLessonChallenges={lesson.challenges}
+    initialHearts={userProgress.hearts}
+    initialPercentage={initialPercentage}
+    userSubscription={userSubscription}
+/>
     
-    
-};
+)};
     

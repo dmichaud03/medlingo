@@ -1,4 +1,4 @@
-import { SimpleForm, Create, required, TextInput } from "react-admin";
+import { SimpleForm, Create,  required, TextInput } from "react-admin";
 
 export const CourseCreate = () => {
     return (

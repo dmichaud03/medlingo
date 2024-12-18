@@ -27,10 +27,8 @@ export const Units = ({
 }: Props) => {
     return (
         <>
-            <UnitBanner 
-                title={title} 
-                description={description} />
-            <div className="flex items-center flex-col relative">
+            <UnitBanner title={title} description={description} />
+          <div className="flex items-center flex-col relative">
                 {lessons.map((lesson, index) => {
                     const isCurrent = lesson.id === activeLesson?.id;
                     const isLocked = !lesson.completed && !isCurrent;

@@ -36,10 +36,14 @@ export default async function LessonIdPage(props: { params: Params }) {
     // Render the Quiz component
     return (
         <Quiz
-            initialLessonId = {"lesson.id"}initialLessonChallenges = {"lesson.challenges"}
-          initialHearts = {"userProgress.hearts"}
-        initialPercentage = {"initialPercentage"}
-          userSubscription = {"userSubscription"}
+            initialLessonId = {"lesson.id"}
+initialLessonChallenges = {"lesson.challenges"}
+          
+initialHearts = {"userProgress.hearts"}
+        
+initialPercentage = {"initialPercentage"}
+          
+userSubscription = {"userSubscription"}
         />
     );
 }
